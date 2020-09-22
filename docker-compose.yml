@@ -18,7 +18,11 @@ services:
       - ./docker/mysql/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
 
   app:
-    build: ./docker/php-fpm
+    build:
+      context: ./docker/php-fpm
+      args:
+        UID: ${UID}
+        GID: ${GID}
     volumes:
       - ./:/app
     working_dir: /app
